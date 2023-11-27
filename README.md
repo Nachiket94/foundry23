@@ -15,28 +15,14 @@ https://book.getfoundry.sh/
 
 ## Usage
 
-### Build
-
+Install Smartcontractkit repo before running
 ```shell
-$ forge build
+$ forge install smartcontractkit/chainlink
 ```
-
 ### Test
 
 ```shell
 $ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
 ```
 
 ### Anvil
@@ -48,7 +34,7 @@ $ anvil
 ### Deploy
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script script/Fundme.s.sol --rpc-url <your_rpc_url> --private-key <your_private_key>
 ```
 
 ### Cast
