@@ -7,7 +7,7 @@ import { MockV3Aggregator } from "test/mocks/MockV3Aggregator.sol";
 contract HelperConfig is Script{
   NetworkConfig public activeNetwrokConfig;
   uint8 public constant DECIMALS = 8;
-  int256 public constant INITIAL_PRICE = 2000e8;
+  int256 public constant INITIAL_PRICE = 2000e18;
 
   struct NetworkConfig{
     address priceFeed;
@@ -17,9 +17,9 @@ contract HelperConfig is Script{
     if(block.chainid == 11155111){
       activeNetwrokConfig = getSepoliaEthConfig();
     } 
-    // else if(block.chainid == 31337){
-    //   activeNetwrokConfig = getAnvilEthConfig();
-    // }
+    else if(block.chainid == 31337){
+      activeNetwrokConfig = getAnvilEthConfig();
+    }
   }
   function getSepoliaEthConfig() public pure returns (NetworkConfig memory){
     NetworkConfig memory sepoliaConfig = NetworkConfig({
@@ -29,6 +29,9 @@ contract HelperConfig is Script{
   }
 
   function getAnvilEthConfig() public returns (NetworkConfig memory){
+    // if (activeNetwrokConfig.priceFeed != address(0)){
+    //   return activeNetwrokConfig;
+    // }
     vm.startBroadcast();
     MockV3Aggregator mockPriceFeed = new MockV3Aggregator(DECIMALS, INITIAL_PRICE);
     vm.stopBroadcast();
